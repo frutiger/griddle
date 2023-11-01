@@ -19,15 +19,15 @@ def get_date_iso():
         ny     = zoneinfo.ZoneInfo("America/New_York")
         now_ny = datetime.datetime.now(tz=ny)
 
+        if now_ny.weekday() in (5, 6) and now_ny.hour >= 18:
+            # Sat/Sun after 6 PM
+            now_ny += datetime.timedelta(1)
+        elif now_ny.weekday() in (0, 1, 2, 3, 4) and now_ny.hour >= 22:
+            # Mon/Tue/Wed/Thu/Fri after 10 PM
+            now_ny += datetime.timedelta(1)
         year  = now_ny.year
         month = now_ny.month
         day   = now_ny.day
-        if now_ny.weekday() in (5, 6) and now_ny.hour >= 18:
-            # Sat/Sun after 6 PM
-            day += 1
-        elif now_ny.weekday() in (0, 1, 2, 3, 4) and now_ny.hour >= 22:
-            # Mon/Tue/Wed/Thu/Fri after 10 PM
-            day += 1
 
     return '{}-{:02}-{:02}'.format(year, month, day)
 
