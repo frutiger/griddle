@@ -68,7 +68,7 @@ def format_rank(solution: Solution, rank, recent):
 
 reader = csv.reader(sys.stdin)
 
-solutions: list[Solution] = []  
+solutions: list[Solution] = []
 
 streaks: list[Streak] = []
 for datum in reader:
@@ -121,6 +121,8 @@ for i, day in enumerate(weekdays):
         grid[i].append(format_rank(days_solutions[j], j, recent))
     grid[i].append("...		")
     if recent_rank <= 2:
+        grid[i].append("		")
+        grid[i].append("		")
         grid[i].append("		")
         grid[i].append("		")
         grid[i].append("		")
